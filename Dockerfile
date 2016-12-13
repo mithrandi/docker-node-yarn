@@ -1,5 +1,6 @@
 FROM node:latest
 MAINTAINER Tristan Seligmann <mithrandi@mithrandi.net>
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -qy apt-transport-https && rm -rf /var/lib/apt/lists/*
 COPY pubkey.gpg /etc/apt/trusted.gpg.d/yarn-pubkey.gpg
 COPY yarn.list /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -qy yarn
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -qy yarn && rm -rf /var/lib/apt/lists/*
